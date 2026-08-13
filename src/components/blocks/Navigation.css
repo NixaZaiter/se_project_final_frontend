@@ -1,0 +1,26 @@
+.navi {
+  display: flex;
+  justify-content: space-between;
+  margin: 19px 104px;
+  align-items: center;
+}
+
+.navi__type_btn {
+  padding: 0;
+  margin: 0;
+}
+
+.navi__signin {
+  border: white 1px solid;
+  border-radius: 100px;
+  background: none;
+  width: 176px;
+  height: 48px;
+}
+
+.navi__home {
+  width: 68px;
+  background: none;
+  border-bottom: white 3px solid;
+  border-radius: 0%;
+}
