@@ -1,4 +1,4 @@
-import "./../blocks/Main.css";
+import "../blocks/Main.css";
 import { About } from "./../index";
 const Main = () => {
   return (

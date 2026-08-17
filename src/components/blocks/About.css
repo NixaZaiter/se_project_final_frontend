@@ -1,0 +1,36 @@
+.about {
+  display: flex;
+  margin: 80px 0;
+  justify-content: center;
+}
+
+.about__container {
+  display: flex;
+  flex-direction: column;
+  margin: 51px 0 0 56px;
+}
+
+.about__title {
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+  margin: 0 0 24px 0;
+}
+
+.about__avatar {
+  max-width: 464px;
+  width: 100%;
+}
+
+.about__description {
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+  margin: 0;
+}

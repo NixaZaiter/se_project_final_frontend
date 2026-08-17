@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  background-color: #000000;
+  background-image: url("../../assets/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.header__container {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 608px;
+}
+
+.header__title {
+  align-self: center;
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 64px;
+  color: #ffffff;
+  margin: 0 0 32px 0;
+  padding: 0;
+}
