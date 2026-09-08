@@ -23,3 +23,4 @@ stage-1-criteria.md
 *.njsproj
 *.sln
 *.sw?
+src/.env
