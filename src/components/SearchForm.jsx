@@ -1,8 +1,9 @@
-import "../blocks/SearchForm.css";
-const SearchForm = () => {
+import "./blocks/SearchForm.css";
+export const SearchForm = () => {
   return (
     <div className="search-form">
-      <p className="search-form__head">
+      <h1 className="search-form__title">{"What's going on in the world?"}</h1>
+      <p className="search-form__text">
         Find the latest news on any topic and save them in your personal
         account.
       </p>
@@ -21,5 +22,3 @@ const SearchForm = () => {
     </div>
   );
 };
-
-export default SearchForm;

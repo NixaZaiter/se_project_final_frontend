@@ -1,16 +1,16 @@
-export { default as App } from "./App";
-export { default as Footer } from "./Footer";
-export { default as NewsCard } from "./NewsCard";
-export { default as Navigation } from "./Navigation";
-export { default as Preloader } from "./Preloader";
-export { default as ModalWithForm } from "./ModalWithForm";
-export { default as LoginModal } from "./LoginModal";
-export { default as RegisterModal } from "./RegisterModal";
+export { App } from "./App";
+export { Footer } from "./Footer";
+export { NewsCard } from "./NewsCard";
+export { NewsCardList } from "./NewsCardList";
+export { Navigation } from "./Navigation";
+export { Preloader } from "./Preloader";
+export { ModalWithForm } from "./ModalWithForm";
+export { LoginModal } from "./LoginModal";
+export { RegisterModal } from "./RegisterModal";
 
-export { default as Header } from "./MainPage/Header";
-export { default as About } from "./MainPage/About";
-export { default as SearchForm } from "./MainPage/SearchForm";
-export { default as Main } from "./MainPage/Main";
+export { Header } from "./Header";
+export { About } from "./About";
+export { SearchForm } from "./SearchForm";
+export { Main } from "./Main";
 
-export { default as SavedHeader } from "./SavedNewsPage/SavedHeader";
-export { default as SavedMain } from "./SavedNewsPage/SavedMain";
+export { SavedNews } from "./SavedNews";
