@@ -1,0 +1,242 @@
+.modal {
+  background-color: #0000004d;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition:
+    visibility 0.4s ease,
+    opacity 0.4s;
+  padding: 74px 10px 0;
+  line-height: 20px;
+  font-size: 16px;
+  z-index: 3;
+}
+.modal_is-open {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.4s;
+}
+.modal__container {
+  background-color: #fff;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  border: 1px solid #000;
+  padding: 34px 36px 28px;
+  border-radius: 16px;
+  max-width: 430px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  flex-grow: 1;
+  z-index: 1;
+}
+.modal_type_login .modal__container {
+  max-height: 380px;
+}
+.modal_type_signup .modal__container {
+  max-height: 458px;
+}
+.modal__radio-buttons {
+  padding: 0;
+  border: none;
+  margin-top: 16px;
+}
+.modal__row {
+  display: flex;
+  margin-bottom: 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal__close {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  opacity: 0.4;
+  transition: 0.3s;
+  cursor: pointer;
+  position: absolute;
+  top: -34px;
+  right: -34px;
+}
+.modal__close:hover {
+  opacity: 1;
+}
+.modal__title {
+  display: flex;
+  margin: 0 0 22px;
+
+  width: 100%;
+  max-height: 32px;
+  height: 100%;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+}
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.modal__error {
+  display: flex;
+  visibility: hidden;
+  margin: 3px 0 13px;
+  block-size: 14px;
+  color: #ff0000;
+  font-weight: 400;
+  font-family: "Inter", "Roboto", Helvetica, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 100%;
+}
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  max-height: 47px;
+  gap: 9px;
+  cursor: text;
+  font-family: "Inter", "Roboto", Helvetica, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 100%;
+  font-weight: 400;
+  color: #2f71e5;
+}
+.modal__label_type_radio {
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+.modal__legend {
+  margin: 0 0 12px;
+}
+.modal__input {
+  margin: 0;
+  padding: 0 0 10px;
+  border: none;
+  border-bottom: 1px solid #00000033;
+  font-family: "Inter", "Roboto", Helvetica, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 100%;
+  font-weight: 400;
+  color: #000;
+}
+.modal__input:focus {
+  outline: none;
+  border-bottom: 1px solid #2f71e5;
+}
+.modal__save-btn {
+  border: none;
+  width: 100%;
+  background-color: #2f71e5;
+  color: white;
+  border-radius: 100px;
+  margin-top: 9px;
+  padding: 20px 0;
+  line-height: 24px;
+  transition:
+    background-color 0.15s ease,
+    opacity 0.15s ease;
+  outline: none;
+  box-shadow: 0px 5px 15px 0px rgba(14, 26, 57, 0.2);
+  flex: 2 1 100%;
+}
+.modal__save-btn:not(:disabled):hover {
+  background-color: #00000099;
+  cursor: pointer;
+}
+.modal__save-btn_disabled,
+.modal__save-btn:disabled {
+  background-color: #0000004d;
+  cursor: not-allowed;
+  opacity: 0.7;
+  pointer-events: none;
+}
+.modal__save-btn_type_secondary {
+  display: flex;
+  justify-content: center;
+  color: #2f71e5;
+  background: none;
+  box-shadow: none;
+  height: 20px;
+  margin: 16px auto 0;
+  line-height: 100%;
+  padding: 0;
+}
+.modal__save-btn_type_secondary:hover,
+.modal__save-btn_type_secondary:not(:disabled):hover {
+  color: #000;
+  background: none;
+  cursor: pointer;
+}
+.modal__signup-text {
+  color: #000;
+  margin: 0;
+}
+
+/* Error input styling */
+.modal__input_type_error {
+  border-color: #ff000099;
+}
+
+.modal__container_type_img {
+  display: flex;
+  max-width: 498px;
+  max-height: 610px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.modal__img {
+  object-fit: contain;
+  height: 498px;
+}
+
+.modal__footer {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  gap: 12px;
+  padding: 0 32px 32px;
+}
+
+.modal__caption {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  margin: 20px 0 0;
+}
+
+.modal__weather {
+  margin: 0;
+}
+
+.modal__delete-btn {
+  position: absolute;
+  right: 33.56px;
+  bottom: 73.78px;
+  padding: 0;
+  height: fit-content;
+  width: fit-content;
+  color: #ff4d00;
+  border: none;
+  background: none;
+  transition: 0.2s;
+}
+
+.modal__delete-btn:hover {
+  cursor: pointer;
+  color: #ff4d0099;
+}

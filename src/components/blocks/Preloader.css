@@ -1,0 +1,32 @@
+.preloader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preloader__circle-preloader {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: linear-gradient(45deg, #1a1b22, #d1d2d600) border-box;
+  -webkit-mask: radial-gradient(circle, transparent 92px, #000 92px);
+  mask: radial-gradient(circle, transparent 36px, #000 36px);
+  animation: spin 0.75s infinite linear;
+}
+
+.preloader__text {
+  text-align: center;
+  margin: 24px 0 0;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #444;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

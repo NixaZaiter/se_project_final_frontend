@@ -1,0 +1,91 @@
+.newslist {
+  background: #f5f6f7;
+  padding: 80px clamp(40px, 6.8%, 104px);
+}
+
+.newslist__cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.newslist__card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-auto-rows: 576px;
+  max-height: calc(576px * var(--number, 1) + (15px * (var(--number, 1) - 1)));
+  overflow-y: hidden;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  gap: 15px;
+  justify-items: center;
+}
+
+.newslist__show-more {
+  align-self: center;
+  max-width: 288px;
+  padding: 20px;
+  border-radius: 80px;
+  width: 100%;
+  background-color: #fff;
+  color: #1a1b22;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: center;
+  border: none;
+  margin-top: 64px;
+}
+
+.newslist__show-more:hover {
+  cursor: pointer;
+  background-color: #e8e8e8;
+}
+
+.newslist__result-title {
+  margin: 0 0 64px 0;
+}
+
+.newslist__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newslist__not-found-icon {
+  max-width: 82.5px;
+}
+
+.newslist__not-found-title {
+  font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.newslist__not-found-text {
+  font-family: "Roboto ", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  margin: 0;
+  max-width: 240px;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .newslist__card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+    grid-auto-rows: 420px;
+    max-height: calc(420px * var(--number, 1) + (8px * (var(--number, 1) - 1)));
+    gap: 8px;
+  }
+}
