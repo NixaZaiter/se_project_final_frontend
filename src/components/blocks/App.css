@@ -7,3 +7,10 @@
   line-height: 24px;
   min-height: 100vh;
 }
+
+.page_background {
+  background-image: url("../../assets/georgia-de-lotz--UsJoNxLaNo-unsplash.jpg");
+  background-size: 100% 976px;
+  background-position: top -200px center;
+  background-repeat: no-repeat;
+}

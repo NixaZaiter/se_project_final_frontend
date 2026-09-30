@@ -1,11 +1,15 @@
 .navi {
   display: flex;
+  position: relative;
   justify-content: space-between;
   max-width: 100%;
   align-items: center;
   padding: 0 104px;
   max-height: 80px;
   box-shadow: 0px -1px 0px 0px rgba(255, 255, 255, 0.2) inset;
+}
+.navi_type_dropdown {
+  background-color: #000000;
 }
 .navi__link {
   display: flex;
@@ -25,12 +29,14 @@
 .navi__title:hover {
   cursor: pointer;
 }
-.navi__btn-container {
+.navi__container {
   display: flex;
   align-items: stretch;
   gap: 46px;
   padding: 0;
   margin: 0;
+  justify-content: flex-end;
+  flex: 1;
 }
 .navi__btn {
   display: flex;
@@ -43,14 +49,19 @@
   padding: 0;
   margin: 0;
 }
+.navi__btn_type_toggle {
+  display: none;
+}
 .navi__btn_type_signin {
   display: flex;
   border: white 1px solid;
   border-radius: 100px;
   background: none;
-  max-width: 176px;
+  max-width: 128px;
   padding: 12px;
-  box-sizing: border-box;
+  box-sizing: content-box;
+  justify-content: center;
+  width: 100%;
   white-space: nowrap;
   margin: 19px 0 13px;
 }
@@ -84,9 +95,9 @@
   cursor: pointer;
 }
 .navi__btn_type_logout {
-  border: 1px solid #fff;
+  border: white 1px solid;
   border-radius: 100px;
-  box-sizing: border-box;
+  box-sizing: content-box;
   padding: 12px 15px 12px 19px;
   gap: 15px;
   max-width: 164px;
@@ -95,6 +106,8 @@
 }
 .navi__btn_type_logout:hover {
   cursor: pointer;
+  background: #e8e8e8;
+  transition: 0.3s;
 }
 .navi__profile-name {
   margin: 0;
@@ -104,25 +117,28 @@
   width: 100%;
   flex: 1;
 }
-.navi__btn_type_current {
+.navi__btn_active {
   border-bottom: white 3px solid;
 }
 
-.navi__btn_type_current:hover {
+.navi__btn_active:hover {
   cursor: default;
 }
-.navi__btn_type_current--dark {
+.navi__btn_dark.navi__btn_active {
   border-bottom: black 3px solid;
 }
-.navi--dark {
+.navi_dark {
   box-shadow: 0px -1px 0px 0px #d1d2d6 inset;
 }
-.navi__title--dark,
-.navi__btn--dark {
+.navi__title_dark,
+.navi__btn_dark {
   color: #000000;
 }
-.navi__btn--dark.navi__btn_type_logout {
+.navi__btn_dark.navi__btn_type_logout {
   border-color: #000000;
+}
+.navi__btn_dark.navi__btn_type_toggle {
+  background-image: url("../../assets/menu-dark.svg");
 }
 
 @media screen and (max-width: 768px) {
@@ -132,7 +148,7 @@
   .navi__btn {
     font-size: 16px;
   }
-  .navi__btn-container {
+  .navi__container {
     gap: 16px;
   }
   .navi__btn_type_logout {
@@ -143,34 +159,61 @@
   }
   .navi__btn_type_saved-articles {
     padding: 0 calc((160px - 101px) / 2);
+    text-wrap: wrap;
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 560px) {
   .navi {
     padding: 16px;
     justify-content: space-between;
   }
-  .navi__btn_type_home {
+  .navi_type_dropdown {
+  }
+  .navi__container {
     display: none;
   }
-  .navi__btn_type_saved-articles {
-    display: none;
+  .navi__container_type_dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    box-sizing: border-box;
+
+    background-color: #000000;
+    top: 56px;
+    left: 0;
+    max-width: 100%;
+    width: 100%;
   }
+  .navi__btn_type_signin,
   .navi__btn_type_logout {
-    display: none;
+    align-self: center;
+    max-width: unset;
+    width: calc(100% - 36px);
+    margin: 0 16px 16px;
   }
-  .navi__btn-container {
-    width: 24px;
+  .navi__btn_type_home,
+  .navi__btn_type_saved-articles {
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-left: 16px;
+  }
+  .navi__btn_type_home {
+    margin-top: 16px;
+  }
+  .navi__btn_type_toggle {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
     height: 24px;
+    width: 24px;
+    padding: 8px;
     background-image: url(../../assets/menu.svg);
     background-repeat: no-repeat;
   }
-  .navi__btn-container:hover {
-    cursor: pointer;
-    scale: 1.2;
-  }
-  .navi__btn_type_signin {
-    display: none;
+  .navi__btn_type_toggle_active {
+    background-image: url("../../assets/close-icon.svg");
+    background-size: contain;
   }
 }

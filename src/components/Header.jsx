@@ -1,21 +1,26 @@
 import "./blocks/Header.css";
-import { Navigation, SearchForm, SavedNews } from "./index";
+import { Navigation } from "./index";
 
 export const Header = ({
   handleLoginClick,
   activePath,
-  isLoggedInSettings,
+  handleLogout,
+  onHomeClick,
+  onDropDownClick,
+  dropDown,
 }) => {
   return (
     <header
-      className={`header ${activePath === "/saved-news" ? "header_no-background" : ""}`}
+      className={`header${activePath === "/saved-news" ? " header_white" : ""}`}
     >
       <Navigation
+        onHomeClick={onHomeClick}
         handleLoginClick={handleLoginClick}
         activePath={activePath}
-        isLoggedInSettings={isLoggedInSettings}
+        handleLogout={handleLogout}
+        onDropDownClick={onDropDownClick}
+        dropDown={dropDown}
       />
-      {activePath === "/saved-news" ? <SavedNews /> : <SearchForm />}
     </header>
   );
 };

@@ -86,11 +86,16 @@ export const validateSignup = (vals) => {
   return next;
 };
 
-// export const validateEditProfile = (vals) => {
-//   const next = { username: "", avatarURL: "" };
-
-//   usernameValidation(vals, next);
-//   avatarValidation(vals, next);
-
-//   return next;
-// };
+export const validateSearch = (vals) => {
+  const next = { searchbar: "" };
+  const query = vals.searchbar || "".trim();
+  if (!query) {
+    next.searchbar = "Please enter a key word";
+  } else {
+    const singleWordRegex = /^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?$/;
+    if (!singleWordRegex.test(vals.searchbar)) {
+      next.searchbar = "No more than 1 hypen and no spaces allowed.";
+    }
+  }
+  return next;
+};

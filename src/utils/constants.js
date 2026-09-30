@@ -1,4 +1,4 @@
-export const apiKey = import.meta.env.VITE_NEWS_API_KEY || undefined;
+export const apiKey = import.meta.env.VITE_NEWS_API_KEY;
 export const defaultQuery = null;
 
 export function handleServerResponse(res) {

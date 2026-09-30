@@ -1,11 +1,16 @@
 import { handleServerResponse } from "./constants";
-export const getNews = (query, apiKey) => {
+export const getNews = ({ searchbar: query }, apiKey) => {
+  const to = new Date().toISOString().split("T")[0];
+  const from = new Date(new Date() - 7 * (24 * 60 * 60 * 1000))
+    .toISOString()
+    .split("T")[0];
   return fetch(
-    `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`,
+    `https://newsapi.org/v2/everything?q=${query}&from=${to}&to=${from}&apiKey=${apiKey}`,
   ).then((res) => {
     return handleServerResponse(res);
   });
 };
+
 export const getSortedNews = (
   {
     from = null,

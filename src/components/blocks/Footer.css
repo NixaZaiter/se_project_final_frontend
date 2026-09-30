@@ -2,10 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 clamp(40px, 10vw, 104px) 26px;
+  padding: 28px clamp(40px, 10vw, 104px);
   max-height: 80px;
   height: 100%;
-  flex: 1;
+  background: #fff;
 }
 
 .footer__link {
@@ -59,12 +59,6 @@
 
 .footer__type_btn:hover {
   cursor: pointer;
-}
-
-@media screen and (max-width: 768px) {
-  .footer {
-    padding: 0 40px 26px;
-  }
 }
 
 @media screen and (max-width: 560px) {

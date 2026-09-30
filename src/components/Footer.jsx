@@ -7,7 +7,7 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <p className="footer__copyright">
-        © {new Date().getFullYear()} Supersite, Powered by News API
+        © {new Date().getFullYear()} Ian Johnson, Powered by News API
       </p>
       <div className="footer__nav">
         <div className="footer__container footer__container_type_text">

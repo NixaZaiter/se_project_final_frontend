@@ -12,7 +12,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-auto-rows: 576px;
-  max-height: calc(576px * var(--number, 1) + (15px * (var(--number, 1) - 1)));
   overflow-y: hidden;
   list-style-type: none;
   padding: 0;
@@ -43,6 +42,10 @@
 .newslist__show-more:hover {
   cursor: pointer;
   background-color: #e8e8e8;
+}
+
+.newslist__show-more_disabled {
+  visibility: hidden;
 }
 
 .newslist__result-title {
@@ -81,11 +84,32 @@
 }
 
 @media screen and (max-width: 768px) {
+  .newslist {
+    padding: 40px;
+  }
+  .newslist__result-title {
+    margin-bottom: 32px;
+  }
   .newslist__card-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
     grid-auto-rows: 420px;
     max-height: calc(420px * var(--number, 1) + (8px * (var(--number, 1) - 1)));
     gap: 8px;
+  }
+  .newslist__show-more {
+    margin-top: 42px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .newslist {
+    padding: 32px 16px 24px;
+  }
+  .newslist__result-title {
+    margin-bottom: 58px;
+  }
+  .newslist__show-more {
+    margin-top: 16px;
   }
 }

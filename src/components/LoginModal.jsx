@@ -4,13 +4,18 @@ import { validateLogin } from "../utils/validators";
 
 import { ModalWithForm } from "./index";
 
-export const LoginModal = ({ isOpen, onClose, handleRegisterClick }) => {
+export const LoginModal = ({
+  isOpen,
+  onClose,
+  handleRegisterClick,
+  handleLogin,
+}) => {
   const defaultValues = {
     email: "",
     password: "",
   };
 
-  const { values, handleChange /*setValues*/ } = useForm(defaultValues);
+  const { values, handleChange, setValues } = useForm(defaultValues);
 
   const [errors, setErrors] = useState({
     email: "",
@@ -53,13 +58,13 @@ export const LoginModal = ({ isOpen, onClose, handleRegisterClick }) => {
       return;
     }
 
-    // handleLogin(values)
-    //   .then(() => {
-    //     setValues(defaultValues);
-    //     setTouched({ email: false, password: false });
-    //     onClose(evt);
-    //   })
-    //   .catch(console.error);
+    handleLogin(values)
+      .then(() => {
+        setValues(defaultValues);
+        setTouched({ email: false, password: false });
+        onClose();
+      })
+      .catch(console.error);
   };
   return (
     <ModalWithForm

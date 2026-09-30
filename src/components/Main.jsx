@@ -1,10 +1,14 @@
 import "./blocks/Main.css";
-import { About, NewsCardList } from "./index";
-export const Main = ({ isLoggedIn }) => {
-  const searchSubmitted = true;
+import { About, NewsCardList, SearchForm } from "./index";
+export const Main = ({ onSearchNews, newsData, isLoading, resetKey }) => {
   return (
     <main className="main">
-      {searchSubmitted ? <NewsCardList isLoggedIn={isLoggedIn} /> : <></>}
+      <SearchForm onSearchNews={onSearchNews} key={resetKey} />
+      {isLoading.searchSubmitted ? (
+        <NewsCardList newsData={newsData} isLoading={isLoading} />
+      ) : (
+        <></>
+      )}
       <About />
     </main>
   );

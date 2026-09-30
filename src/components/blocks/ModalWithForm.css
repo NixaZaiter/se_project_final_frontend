@@ -33,15 +33,14 @@
   border-radius: 16px;
   max-width: 430px;
   width: 100%;
-  height: 100%;
   box-sizing: border-box;
   flex-grow: 1;
   z-index: 1;
 }
-.modal_type_login .modal__container {
+.modal_type_login.modal__container {
   max-height: 380px;
 }
-.modal_type_signup .modal__container {
+.modal_type_signup.modal__container {
   max-height: 458px;
 }
 .modal__radio-buttons {
@@ -239,4 +238,18 @@
 .modal__delete-btn:hover {
   cursor: pointer;
   color: #ff4d0099;
+}
+
+@media screen and (max-width: 560px) {
+  .modal {
+    top: 56px;
+    padding: 0;
+    z-index: 100;
+  }
+  .modal__container {
+    height: 100%;
+    max-width: 100%;
+    width: 100%;
+    z-index: 100;
+  }
 }

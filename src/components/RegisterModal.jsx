@@ -10,7 +10,7 @@ export const RegisterModal = ({ handleLoginClick, isOpen, onClose }) => {
     username: "",
   };
 
-  const { values, handleChange /*setValues*/ } = useForm(defaultValues);
+  const { values, handleChange, setValues } = useForm(defaultValues);
 
   const [errors, setErrors] = useState({
     email: "",
@@ -57,13 +57,13 @@ export const RegisterModal = ({ handleLoginClick, isOpen, onClose }) => {
       return;
     }
 
-    // handleLogin(values)
-    //   .then(() => {
-    //     setValues(defaultValues);
-    //     setTouched({ email: false, password: false });
-    //     onClose(evt);
-    //   })
-    //   .catch(console.error);
+    alert(
+      `Welcome, ${values.username}! Registration is unimplemented at the moment. Please use: 
+      email: "test@mail.com" 
+      password: "password"`,
+    );
+    setValues(defaultValues);
+    setTouched({ email: false, password: false, username: false });
   };
   return (
     <ModalWithForm
