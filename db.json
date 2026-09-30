@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "name": "Guest",
+      "email": "test@mail.com",
+      "password": "password",
+      "articles": [
+        {
+          "source": {
+            "id": "the-verge",
+            "name": "The Verge"
+          },
+          "author": "Jay Peters",
+          "title": "Meta’s next VR device isn’t a headset — it’s glasses",
+          "description": "Meta is launching new VR hardware: a pair of glasses. The new Meta VR Glasses sit on your ears like a typical pair of glasses instead of being strapped over your head, but they still have immersive displays for watching movies, playing games, and getting work…",
+          "url": "https://www.theverge.com/tech/999517/meta-vr-glasses-connect-2026-hands-on",
+          "urlToImage": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/09/20260922_C0744.00_29_03_12.Still016.jpg?quality=90&strip=all&crop=0%2C10.741088940398%2C100%2C78.517822119203&w=1200",
+          "publishedAt": "2026-09-23T23:45:36Z",
+          "content": "HANDS-ON<ul><li></li><li></li><li></li></ul>\r\nThe new Meta VR Glasses offer immersive experiences in a shape thats much easier to actually wear.\r\nThe new Meta VR Glasses offer immersive experiences i… [+7658 chars]",
+          "frontendId": "ab2ca8ab-053b-4749-b415-1ddcbf31908a",
+          "bookmarked": true,
+          "keyword": "head"
+        },
+        {
+          "source": {
+            "id": "bbc-news",
+            "name": "BBC News"
+          },
+          "author": null,
+          "title": "Watch: Key moments from Andy Burnham's first UN speech",
+          "description": "In his first speech to the UN as UK prime minister, Burnham highlighted the risks posed by Russian disinformation.",
+          "url": "https://www.bbc.co.uk/news/videos/cq5y4zpn655ko",
+          "urlToImage": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/3e03/live/5b033fc0-b6ed-11f1-a430-4d16ee157c41.jpg",
+          "publishedAt": "2026-09-23T01:25:47Z",
+          "content": "The UK prime minister gave his first address to the United Nations General Assembly (UNGA) on Tuesday.\r\nIn his speech, Burnham highlighted the risks posed by Russian disinformation and announced new … [+63 chars]",
+          "frontendId": "677670cb-f87b-4202-9074-111c46717bdb",
+          "bookmarked": true,
+          "keyword": "key"
+        }
+      ]
+    }
+  ]
+}
