@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  max-height: 576px;
+  z-index: 99;
+}
+.header_white {
+  background-color: #fff;
+}
