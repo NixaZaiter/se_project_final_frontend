@@ -63,12 +63,18 @@ export function App() {
     resetKey = resetKey + 1;
     setResetKey(resetKey);
     resetKey = 0;
+    handleCloseModal();
+    setDropDown(false);
   };
   const onDropDownClick = () => {
     setDropDown(!dropDown);
     if (activeModal !== "") {
       handleCloseModal();
     }
+  };
+
+  const onDropDownMenuClick = () => {
+    setDropDown(false);
   };
 
   // Logout logic
@@ -79,6 +85,8 @@ export function App() {
       _id: "",
       isLoggedIn: false,
     }));
+    setDropDown(false);
+    handleCloseModal();
   };
 
   // Login logic
@@ -93,6 +101,7 @@ export function App() {
         _id: user._id,
         isLoggedIn: true,
       });
+      setDropDown(false);
       handleCloseModal();
     } catch (err) {
       console.error("Login Error in console:", err.message);
@@ -111,7 +120,7 @@ export function App() {
     setIsLoading({ searchSubmitted: true, loading: true });
     try {
       const response = await getNews(data, apiKey);
-      const articleWithIds = response.articles.map((article) => ({
+      const articleWithIds = await response.articles.map((article) => ({
         ...article,
         frontendId: crypto.randomUUID(),
         bookmarked: false,
@@ -160,6 +169,7 @@ export function App() {
             onDropDownClick={onDropDownClick}
             dropDown={dropDown}
             handleCloseModal={handleCloseModal}
+            onDropDownMenuClick={onDropDownMenuClick}
           />
 
           <Routes>

@@ -6,8 +6,8 @@ export const SearchForm = ({ onSearchNews }) => {
   const defaultValues = {
     searchbar: "",
   };
-  const { values, handleChange } = useForm(defaultValues);
-
+  const { values, handleChange, setValues } = useForm(defaultValues);
+  const [placeholder, setPlaceHolder] = useState("Enter topic");
   const [errors, setErrors] = useState({
     searchbar: "",
   });
@@ -33,10 +33,12 @@ export const SearchForm = ({ onSearchNews }) => {
       setTouched({ searchbar: true });
       return;
     }
+    setPlaceHolder(values.searchbar);
 
     onSearchNews(values)
       .then(() => {
         setTouched({ searchbar: false });
+        setValues(defaultValues);
       })
       .catch(console.error);
   };
@@ -54,7 +56,7 @@ export const SearchForm = ({ onSearchNews }) => {
             type="text"
             name="searchbar"
             id="searchbar"
-            placeholder="Enter topic"
+            placeholder={placeholder}
             className={`search-form__textbox ${errors.searchbar && touched.searchbar ? "search-form__textbox_type_error" : ""}`}
             onChange={handleFieldChange}
             value={values.searchbar}

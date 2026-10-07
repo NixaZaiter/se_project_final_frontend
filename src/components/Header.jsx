@@ -8,6 +8,7 @@ export const Header = ({
   onHomeClick,
   onDropDownClick,
   dropDown,
+  onDropDownMenuClick,
 }) => {
   return (
     <header
@@ -20,6 +21,7 @@ export const Header = ({
         handleLogout={handleLogout}
         onDropDownClick={onDropDownClick}
         dropDown={dropDown}
+        onDropDownMenuClick={onDropDownMenuClick}
       />
     </header>
   );

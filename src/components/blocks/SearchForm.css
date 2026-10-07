@@ -76,8 +76,7 @@
 }
 
 .search-form__textbox:focus {
-  outline: none;
-  border: 1px solid #d1d2d6;
+  outline: 1px solid #d1d2d6;
 }
 
 .search-form__textbox_type_error {

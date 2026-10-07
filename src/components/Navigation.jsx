@@ -12,9 +12,9 @@ export const Navigation = ({
   onHomeClick,
   onDropDownClick,
   dropDown,
+  onDropDownMenuClick,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  const savedPath = activePath === "/saved-news";
   const [theme, setTheme] = useState({
     navi: "navi",
     title: "navi__title",
@@ -22,7 +22,7 @@ export const Navigation = ({
   });
 
   useEffect(() => {
-    if (savedPath && !dropDown) {
+    if (activePath === "/saved-news" && !dropDown) {
       setTheme({
         navi: "navi navi_dark",
         title: "navi__title navi__title_dark",
@@ -35,7 +35,7 @@ export const Navigation = ({
       title: "navi__title",
       button: "navi__btn",
     });
-  }, [setTheme, dropDown, savedPath]);
+  }, [dropDown, activePath]);
   return (
     <>
       <nav className={`${theme.navi}${dropDown ? " navi_type_dropdown" : ""}`}>
@@ -53,6 +53,7 @@ export const Navigation = ({
           <Link to="/" className="navi__link">
             <button
               className={`${theme.button} navi__btn_type_home ${activePath === "/" ? "navi__btn_active" : ""}`}
+              onClick={onDropDownMenuClick}
             >
               Home
             </button>
@@ -62,7 +63,8 @@ export const Navigation = ({
               {/*Saved News Menu Button*/}
               <Link to={"/saved-news"} className="navi__link">
                 <button
-                  className={`${theme.button} navi__btn_type_saved-articles ${savedPath ? "navi__btn_active" : ""}`}
+                  className={`${theme.button} navi__btn_type_saved-articles ${activePath === "/saved-news" ? "navi__btn_active" : ""}`}
+                  onClick={onDropDownMenuClick}
                 >
                   Saved articles
                 </button>
@@ -75,7 +77,11 @@ export const Navigation = ({
                 >
                   <p className="navi__profile-name">{currentUser.name}</p>
                   <img
-                    src={savedPath && !dropDown ? logoutBtnDark : logoutBtn}
+                    src={
+                      activePath === "/saved-news" && !dropDown
+                        ? logoutBtnDark
+                        : logoutBtn
+                    }
                     alt="Logout icon"
                     className="navi__logout-icon"
                   />

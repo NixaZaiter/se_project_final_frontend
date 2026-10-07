@@ -5,6 +5,34 @@ import { NewsCardList } from "./index";
 export const SavedNews = ({ activePath, isLoading }) => {
   const [keywords, setKeywords] = useState([]);
   const currentUser = useContext(CurrentUserContext);
+
+  const truncateKeywords = (maxWords) => {
+    const totalWords = keywords.length;
+    if (totalWords == 0) return "";
+    if (totalWords <= maxWords) {
+      return (
+        <>
+          By keywords: <strong>{keywords.join(", ")}</strong>
+        </>
+      );
+    }
+    const keptWords = keywords.slice(0, maxWords);
+    const extraWords = totalWords - maxWords;
+    const truncatedText = (
+      <>
+        By keywords:{" "}
+        <strong>
+          {keptWords.join(", ") +
+            " and " +
+            extraWords +
+            " other" +
+            (extraWords === 1 ? "" : "s")}
+        </strong>
+      </>
+    );
+    return truncatedText;
+  };
+
   useEffect(() => {
     const newKeywords = currentUser.articles.map((article) => article.keyword);
     setKeywords((prev) => Array.from(new Set([...prev, ...newKeywords])));
@@ -20,16 +48,12 @@ export const SavedNews = ({ activePath, isLoading }) => {
               : `${currentUser.name}, you have ${currentUser.articles.length} saved ${currentUser.articles.length > 1 ? "articles" : "article"}`}
           </h2>
           {keywords.length > 0 && (
-            <p className="saved-news__keywords">
-              <>
-                By keywords: <strong>{keywords.join(", ")}</strong>
-              </>
-            </p>
+            <p className="saved-news__keywords">{truncateKeywords(3)}</p>
           )}
         </div>
         <NewsCardList
           activePath={activePath}
-          newsData={currentUser}
+          newsData={currentUser.articles}
           isLoading={isLoading}
         />
       </section>

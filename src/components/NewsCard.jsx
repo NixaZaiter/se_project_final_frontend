@@ -33,9 +33,7 @@ export const NewsCard = ({ item, activePath }) => {
             className="newscard__bookmark newscard__bookmark_type_delete"
             // onClick={handleDeleteClick}
           >
-            <button className="newscard__bookmark-popup">
-              Remove from saved
-            </button>
+            <span className="newscard__bookmark-popup">Remove from saved</span>
           </button>
         </>
       ) : (
@@ -44,9 +42,9 @@ export const NewsCard = ({ item, activePath }) => {
           onClick={currentUser.isLoggedIn ? handleBookmarkClick : null}
         >
           {!currentUser.isLoggedIn ? (
-            <button className="newscard__bookmark-popup">
+            <span className="newscard__bookmark-popup">
               Sign in to save articles
-            </button>
+            </span>
           ) : (
             ""
           )}
