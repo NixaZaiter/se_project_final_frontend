@@ -4,16 +4,17 @@ import "./blocks/Navigation.css";
 import logoutBtn from "../assets/logout.svg";
 import logoutBtnDark from "../assets/logout-dark.svg";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { ActivePathContext } from "../contexts/ActivePathContext";
 
 export const Navigation = ({
   handleLogout,
   handleLoginClick,
-  activePath,
   onHomeClick,
   onDropDownClick,
   dropDown,
   onDropDownMenuClick,
 }) => {
+  const activePath = useContext(ActivePathContext);
   const currentUser = useContext(CurrentUserContext);
   const [theme, setTheme] = useState({
     navi: "navi",
@@ -40,8 +41,8 @@ export const Navigation = ({
     <>
       <nav className={`${theme.navi}${dropDown ? " navi_type_dropdown" : ""}`}>
         {/*Title*/}
-        <Link to="/" className="navi__link">
-          <p className={theme.title} onClick={onHomeClick}>
+        <Link to="/" className="navi__link" tabIndex={-1}>
+          <p className={theme.title} onClick={onHomeClick} tabIndex={0}>
             NewsExplorer
           </p>
         </Link>
@@ -50,7 +51,7 @@ export const Navigation = ({
           className={`navi__container ${dropDown ? "navi__container_type_dropdown" : ""}`}
         >
           {/*Home Menu Button*/}
-          <Link to="/" className="navi__link">
+          <Link to="/" className="navi__link" tabIndex={-1}>
             <button
               className={`${theme.button} navi__btn_type_home ${activePath === "/" ? "navi__btn_active" : ""}`}
               onClick={onDropDownMenuClick}
@@ -61,7 +62,7 @@ export const Navigation = ({
           {currentUser.isLoggedIn ? (
             <>
               {/*Saved News Menu Button*/}
-              <Link to={"/saved-news"} className="navi__link">
+              <Link to={"/saved-news"} className="navi__link" tabIndex={-1}>
                 <button
                   className={`${theme.button} navi__btn_type_saved-articles ${activePath === "/saved-news" ? "navi__btn_active" : ""}`}
                   onClick={onDropDownMenuClick}
@@ -70,7 +71,7 @@ export const Navigation = ({
                 </button>
               </Link>
               {/*Logout Button*/}
-              <Link to={"/"} replace className="navi__link">
+              <Link to={"/"} replace className="navi__link" tabIndex={-1}>
                 <button
                   className={`${theme.button} navi__btn_type_logout`}
                   onClick={handleLogout}

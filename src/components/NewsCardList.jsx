@@ -3,9 +3,14 @@ import { NewsCard, Preloader } from "./index";
 import notFoundIcon from "../assets/not-found_v1.svg";
 
 import "./blocks/NewsCardList.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { ActivePathContext } from "../contexts/ActivePathContext";
 
-export const NewsCardList = ({ activePath, newsData, isLoading }) => {
+export const NewsCardList = ({ newsData, isLoading, onBookmarkClick }) => {
+  const activePath = useContext(ActivePathContext);
+  const currentUser = useContext(CurrentUserContext);
+  const [activeArray, setActiveArray] = useState(newsData.articles);
   let [cardLimit, setCardLimit] = useState(3);
   const [maxLimit, setMaxLimit] = useState(100);
   const showMore = () => {
@@ -17,27 +22,35 @@ export const NewsCardList = ({ activePath, newsData, isLoading }) => {
     }
     setCardLimit(cardLimit);
   };
-  useEffect(() => {
-    const newsDataLength = async () => {
-      try {
-        const response = await newsData.articles.length;
-        return response;
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  console.log(activeArray.length);
 
-    if (newsDataLength < maxLimit) {
-      setMaxLimit(newsDataLength);
+  const newsArticlesLength = newsData.articles.length;
+
+  useEffect(() => {
+    if (maxLimit < 100 && maxLimit < newsArticlesLength) {
+      setMaxLimit(100);
+      return;
     }
-  }, [newsData, maxLimit]);
+    if (newsArticlesLength < maxLimit) {
+      setMaxLimit(newsArticlesLength);
+      return;
+    }
+  }, [newsArticlesLength, maxLimit, cardLimit]);
+
+  useEffect(() => {
+    const savedArticles = currentUser.articles;
+    const searchedArticles = newsData.articles;
+    if (activePath !== "/saved-news") setActiveArray(savedArticles);
+    setActiveArray(searchedArticles);
+  }, [newsData.articles, currentUser.articles, activePath, setActiveArray]);
+
   return (
     <section className="newslist">
       {isLoading.loading ? (
         <Preloader />
       ) : (
         <section className="newslist__cards">
-          {newsData.totalResults <= 0 ? (
+          {newsArticlesLength <= 0 ? (
             <div className="newslist__empty">
               <img
                 src={notFoundIcon}
@@ -64,17 +77,13 @@ export const NewsCardList = ({ activePath, newsData, isLoading }) => {
             <>
               <h2 className="newslist__result-title">Search results</h2>
               <ul className="newslist__card-list">
-                {newsData.articles
+                {activeArray
                   .map((mappedArticle) => {
-                    ({
-                      ...mappedArticle,
-                      frontendId: crypto.randomUUID(),
-                    });
                     return (
                       <NewsCard
-                        key={mappedArticle.frontendId}
+                        key={mappedArticle.url}
                         item={mappedArticle}
-                        activePath={activePath}
+                        onBookmarkClick={onBookmarkClick}
                       />
                     );
                   })

@@ -1,23 +1,20 @@
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { useContext, useState } from "react";
-import { saveArticle } from "../utils/api";
 
 import "./blocks/NewsCard.css";
-export const NewsCard = ({ item, activePath }) => {
+import { ActivePathContext } from "../contexts/ActivePathContext";
+export const NewsCard = ({ item, onBookmarkClick }) => {
   const [isBookmarked, setIsBookmarked] = useState(item.bookmarked);
   const currentUser = useContext(CurrentUserContext);
+  const activePath = useContext(ActivePathContext);
   const newsDate = new Date(item.publishedAt);
+
   const handleBookmarkClick = () => {
-    const nextState = !isBookmarked;
-    setIsBookmarked(nextState);
-    saveArticle(item);
+    onBookmarkClick(item);
+    setIsBookmarked(item.bookmarked);
   };
-  // const handleDeleteClick = () => {
-  //   const nextState = !isBookmarked;
-  //   setIsBookmarked(nextState);
-  //   deleteArticle(item);
-  // };
+
   const formattedDate = new Date(newsDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -31,7 +28,7 @@ export const NewsCard = ({ item, activePath }) => {
           <span className="newscard__keyword">{item.keyword}</span>
           <button
             className="newscard__bookmark newscard__bookmark_type_delete"
-            // onClick={handleDeleteClick}
+            onClick={handleBookmarkClick}
           >
             <span className="newscard__bookmark-popup">Remove from saved</span>
           </button>

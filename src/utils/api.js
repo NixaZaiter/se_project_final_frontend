@@ -1,3 +1,4 @@
+/* Unimplemented getItems function
 export const getItems = () => {
   return new Promise((resolve, reject) => {
     (resolve([
@@ -14,12 +15,11 @@ export const getItems = () => {
     ]),
       reject(`Promise rejected`));
   });
-};
+}; */
 
 export const saveArticle = (article) => {
   return new Promise((resolve, reject) => {
     resolve({
-      frontendId: article.frontendId,
       author: article.author,
       title: article.title,
       description: article.description,
@@ -29,6 +29,19 @@ export const saveArticle = (article) => {
       content: article.content,
       bookmarked: article.bookmarked,
       keyword: article.keyword,
+      source: {
+        id: article.source.id,
+        name: article.source.name,
+      },
+    });
+    reject(`Promise rejected`);
+  });
+};
+
+export const deleteArticle = (article) => {
+  return new Promise((resolve, reject) => {
+    resolve({
+      url: article.url,
     });
     reject(`Promise rejected`);
   });

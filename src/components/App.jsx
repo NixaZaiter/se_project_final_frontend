@@ -15,8 +15,10 @@ import {
 import { apiKey } from "../utils/constants";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { ActivePathContext } from "../contexts/ActivePathContext";
 import { getNews } from "../utils/newsApi";
 import { authorizeUser, checkToken } from "../utils/auth";
+import { deleteArticle, saveArticle } from "../utils/api";
 
 export function App() {
   const location = useLocation();
@@ -34,45 +36,67 @@ export function App() {
     name: "",
     _id: "",
     isLoggedIn: false,
+    articles: [],
   });
   const [newsData, setNewsData] = useState({
     status: "",
     totalResults: 0,
-    articles: [
-      {
-        source: {
-          id: null,
-          name: "",
-        },
-        author: "",
-        title: "",
-        description: "",
-        url: "",
-        urlToImage: "",
-        bookmarked: false,
-      },
-    ],
+    articles: [],
   });
 
   // Modal setters
   const handleLoginClick = () => setActiveModal("login");
   const handleRegisterClick = () => setActiveModal("signup");
   const handleCloseModal = () => setActiveModal("");
+
+  // Click Logic
   const onHomeClick = () => {
     setIsLoading({ searchSubmitted: false, loading: false });
     resetKey = resetKey + 1;
     setResetKey(resetKey);
     resetKey = 0;
+    setNewsData({
+      status: "",
+      totalResults: 0,
+      articles: [],
+    });
     handleCloseModal();
     setDropDown(false);
   };
+
+  const onBookmarkClick = (item) => {
+    if (currentUser.articles.find((article) => article.url === item.url)) {
+      console.log("found ", item);
+      item.bookmarked = false;
+      deleteArticle(item)
+        .then((data) => {
+          setCurrentUser((prev) => ({
+            ...prev,
+            articles: prev.articles.filter((item) => item.url !== data.url),
+          }));
+        })
+        .catch(console.error);
+      return;
+    }
+    console.log("not found! Saving");
+    item.bookmarked = true;
+    saveArticle(item)
+      .then((data) => {
+        setCurrentUser((prev) => ({
+          ...prev,
+          articles: [...prev.articles, item],
+        }));
+        return data;
+      })
+      .catch(console.error);
+  };
+
   const onDropDownClick = () => {
     setDropDown(!dropDown);
     if (activeModal !== "") {
       handleCloseModal();
     }
   };
-
   const onDropDownMenuClick = () => {
     setDropDown(false);
   };
@@ -94,7 +118,6 @@ export function App() {
     try {
       const token = await authorizeUser(data);
       const user = await checkToken(token);
-      console.log();
       setCurrentUser({
         ...user,
         name: user.name,
@@ -120,13 +143,12 @@ export function App() {
     setIsLoading({ searchSubmitted: true, loading: true });
     try {
       const response = await getNews(data, apiKey);
-      const articleWithIds = await response.articles.map((article) => ({
+      const articlesWithBookmarks = await response.articles.map((article) => ({
         ...article,
-        frontendId: crypto.randomUUID(),
         bookmarked: false,
         keyword: data.searchbar,
       }));
-      setNewsData({ ...response, articles: articleWithIds });
+      setNewsData({ ...response, articles: articlesWithBookmarks });
       setIsLoading({ searchSubmitted: true, loading: false });
     } catch (err) {
       console.error(
@@ -158,64 +180,67 @@ export function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      {
-        <div className={`page${activePath === "/" ? " page_background" : ""}`}>
-          <Header
-            className="page__header"
-            handleLoginClick={handleLoginClick}
-            activePath={activePath}
-            onHomeClick={onHomeClick}
-            handleLogout={handleLogout}
-            onDropDownClick={onDropDownClick}
-            dropDown={dropDown}
-            handleCloseModal={handleCloseModal}
-            onDropDownMenuClick={onDropDownMenuClick}
-          />
-
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Main //SearchForm, NewsCardList (with API data), About
-                  isLoading={isLoading}
-                  onSearchNews={onSearchNews}
-                  resetKey={resetKey}
-                  newsData={newsData}
-                />
-              }
+      <ActivePathContext.Provider value={activePath}>
+        {
+          <div
+            className={`page${activePath === "/" ? " page_background" : ""}`}
+          >
+            <Header
+              className="page__header"
+              handleLoginClick={handleLoginClick}
+              onHomeClick={onHomeClick}
+              handleLogout={handleLogout}
+              onDropDownClick={onDropDownClick}
+              dropDown={dropDown}
+              handleCloseModal={handleCloseModal}
+              onDropDownMenuClick={onDropDownMenuClick}
             />
-            {currentUser.isLoggedIn === false ? (
-              ""
-            ) : (
+
+            <Routes>
               <Route
-                path="/saved-news"
+                path="/"
                 element={
-                  <SavedNews //NewsCardList (with bookmarked data)
-                    activePath={activePath}
-                    newsData={newsData} // NEED TO CHANGE TO SAVEDNEWSDATA WITH LIKE/BOOKMARK LOGIC
+                  <Main //SearchForm, NewsCardList (with API data), About
                     isLoading={isLoading}
+                    onSearchNews={onSearchNews}
+                    resetKey={resetKey}
+                    newsData={newsData}
+                    onBookmarkClick={onBookmarkClick}
                   />
                 }
               />
-            )}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+              {currentUser.isLoggedIn === false ? (
+                ""
+              ) : (
+                <Route
+                  path="/saved-news"
+                  element={
+                    <SavedNews //NewsCardList (with bookmarked data)
+                      isLoading={isLoading}
+                      onBookmarkClick={onBookmarkClick}
+                    />
+                  }
+                />
+              )}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
 
-          <Footer />
+            <Footer />
 
-          <LoginModal
-            isOpen={activeModal === "login"}
-            handleLogin={handleLogin}
-            handleRegisterClick={handleRegisterClick}
-            onClose={handleCloseModal}
-          />
-          <RegisterModal
-            isOpen={activeModal === "signup"}
-            handleLoginClick={handleLoginClick}
-            onClose={handleCloseModal}
-          />
-        </div>
-      }
+            <LoginModal
+              isOpen={activeModal === "login"}
+              handleLogin={handleLogin}
+              handleRegisterClick={handleRegisterClick}
+              onClose={handleCloseModal}
+            />
+            <RegisterModal
+              isOpen={activeModal === "signup"}
+              handleLoginClick={handleLoginClick}
+              onClose={handleCloseModal}
+            />
+          </div>
+        }
+      </ActivePathContext.Provider>
     </CurrentUserContext.Provider>
   );
 }

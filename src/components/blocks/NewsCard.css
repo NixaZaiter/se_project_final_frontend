@@ -51,6 +51,9 @@
   aspect-ratio: 1;
   z-index: 2;
 }
+.newscard__bookmark:focus {
+  outline: 2px solid #fff;
+}
 .newscard__bookmark:hover {
   cursor: pointer;
 }
@@ -69,6 +72,7 @@
 }
 .newscard__bookmark-popup {
   position: relative;
+  outline: none;
   align-self: center;
   background-image: none;
   pointer-events: none;
@@ -92,8 +96,8 @@
   transition: 0.3s;
   transform-origin: right;
   transform: translateX(0);
-  opacity: 0;
   visibility: hidden;
+  opacity: 0;
   z-index: 1;
 }
 
@@ -121,6 +125,11 @@
 }
 .newscard__link {
   text-decoration: none;
+}
+.newscard__link:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 .newscard__link:hover {
   text-decoration: underline;

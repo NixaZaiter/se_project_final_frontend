@@ -1,15 +1,17 @@
+import { useContext } from "react";
 import "./blocks/Header.css";
 import { Navigation } from "./index";
+import { ActivePathContext } from "../contexts/ActivePathContext";
 
 export const Header = ({
   handleLoginClick,
-  activePath,
   handleLogout,
   onHomeClick,
   onDropDownClick,
   dropDown,
   onDropDownMenuClick,
 }) => {
+  const activePath = useContext(ActivePathContext);
   return (
     <header
       className={`header${activePath === "/saved-news" ? " header_white" : ""}`}
@@ -17,7 +19,6 @@ export const Header = ({
       <Navigation
         onHomeClick={onHomeClick}
         handleLoginClick={handleLoginClick}
-        activePath={activePath}
         handleLogout={handleLogout}
         onDropDownClick={onDropDownClick}
         dropDown={dropDown}

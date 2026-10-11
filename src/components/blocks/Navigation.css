@@ -15,6 +15,11 @@
   display: flex;
   text-decoration: none;
 }
+.navi__title:focus {
+  border-radius: 100px;
+  outline: white 2px solid;
+  outline-offset: 15px;
+}
 .navi__title {
   font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
   font-style: normal;
@@ -48,6 +53,9 @@
   color: #ffffff;
   padding: 0;
   margin: 0;
+}
+.navi__btn:focus {
+  outline: white 2px solid;
 }
 .navi__btn_type_toggle {
   display: none;
@@ -133,6 +141,10 @@
 .navi__title_dark,
 .navi__btn_dark {
   color: #000000;
+}
+.navi__btn_dark:focus,
+.navi__title_dark:focus {
+  outline: black 2px solid;
 }
 .navi__btn_dark.navi__btn_type_logout {
   border-color: #000000;
