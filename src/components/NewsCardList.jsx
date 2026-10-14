@@ -22,7 +22,6 @@ export const NewsCardList = ({ newsData, isLoading, onBookmarkClick }) => {
     }
     setCardLimit(cardLimit);
   };
-  console.log(activeArray.length);
 
   const newsArticlesLength = newsData.articles.length;
 

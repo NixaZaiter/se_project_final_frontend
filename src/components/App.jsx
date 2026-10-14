@@ -66,7 +66,6 @@ export function App() {
 
   const onBookmarkClick = (item) => {
     if (currentUser.articles.find((article) => article.url === item.url)) {
-      console.log("found ", item);
       item.bookmarked = false;
       deleteArticle(item)
         .then((data) => {
@@ -78,7 +77,6 @@ export function App() {
         .catch(console.error);
       return;
     }
-    console.log("not found! Saving");
     item.bookmarked = true;
     saveArticle(item)
       .then((data) => {

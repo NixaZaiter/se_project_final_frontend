@@ -16,15 +16,25 @@ export const About = () => {
         <div className="about__text">
           <h2 className="about__title">About the author</h2>
           <p className="about__description">
-            This block describes the project author. Here you should indicate
-            your name, what you do, and which development technologies you know.
+            My name is Ian Johnson. I currently work in retail, but aim to move
+            into tech with a focus in game design. I&apos;m a novice in HTML,
+            CSS, JavaScript, React, MongoDB, Express and Node.
             <br />
             <br />
-            You can also talk about your experience with TripleTen, what you
-            learned there, and how you can help potential customers.
+            My time at TripleTen has given me many new skills in the various
+            technologies mentioned above. I went in with very little knowledge
+            in coding outside the absolute basics and have now put together two
+            full webpages. I aim to further my knowledge in webpage development
+            and other coding languages such as Python so that I may cast my net
+            even wider with opportunities.
           </p>
         </div>
       </div>
     </section>
   );
 };
+/* 
+You can also talk about your experience with
+TripleTen, what you learned there, and how you can help potential
+customers. 
+*/
