@@ -33,8 +33,3 @@ export const About = () => {
     </section>
   );
 };
-/* 
-You can also talk about your experience with
-TripleTen, what you learned there, and how you can help potential
-customers. 
-*/
