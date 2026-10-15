@@ -1,5 +1,4 @@
 import { NewsCard, Preloader } from "./index";
-// import { NEWS_API_RESPONSE } from "../utils/newsItems";
 import notFoundIcon from "../assets/not-found_v1.svg";
 
 import "./blocks/NewsCardList.css";

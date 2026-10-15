@@ -6,7 +6,6 @@
   align-items: center;
   padding: 0 104px;
   max-height: 80px;
-  box-shadow: 0px -1px 0px 0px rgba(255, 255, 255, 0.2) inset;
 }
 .navi_type_dropdown {
   background-color: #000000;
@@ -28,6 +27,7 @@
   line-height: 24px;
   color: #ffffff;
   margin: 0;
+  margin-right: 16px;
   padding: 0;
   max-width: 200px;
 }
@@ -134,9 +134,6 @@
 }
 .navi__btn_dark.navi__btn_active {
   border-bottom: black 3px solid;
-}
-.navi_dark {
-  box-shadow: 0px -1px 0px 0px #d1d2d6 inset;
 }
 .navi__title_dark,
 .navi__btn_dark {
