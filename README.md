@@ -17,11 +17,12 @@ Put together using primarily React/HTML/CSS at this stage.
 
 ### **GitHub Links**
 
- * Frontend - https://github.com/NixaZaiter/se_project_final_frontend
- * Backend - TBA
+- Frontend - https://github.com/NixaZaiter/se_project_final_frontend
+- Backend - TBA
 
 ## Project Pitch Video
 
-Not made yet due to wanting feedback to finish up first.
+Check out [this video](https://drive.google.com/file/d/1cnTDpOLnHXpArktciJdc3o-nPUlB-iM3/view), where I describe my
+project and some challenges I faced while building it.
 
 ### **Notes**
