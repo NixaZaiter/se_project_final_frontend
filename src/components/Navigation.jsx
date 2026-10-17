@@ -1,0 +1,111 @@
+import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import "./blocks/Navigation.css";
+import logoutBtn from "../assets/logout.svg";
+import logoutBtnDark from "../assets/logout-dark.svg";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { ActivePathContext } from "../contexts/ActivePathContext";
+
+export const Navigation = ({
+  handleLogout,
+  handleLoginClick,
+  onHomeClick,
+  onDropDownClick,
+  dropDown,
+  onDropDownMenuClick,
+}) => {
+  const activePath = useContext(ActivePathContext);
+  const currentUser = useContext(CurrentUserContext);
+  const [theme, setTheme] = useState({
+    navi: "navi",
+    title: "navi__title",
+    button: "navi__btn",
+  });
+
+  useEffect(() => {
+    if (activePath === "/saved-news" && !dropDown) {
+      setTheme({
+        navi: "navi navi_dark",
+        title: "navi__title navi__title_dark",
+        button: "navi__btn navi__btn_dark",
+      });
+      return;
+    }
+    setTheme({
+      navi: "navi",
+      title: "navi__title",
+      button: "navi__btn",
+    });
+  }, [dropDown, activePath]);
+  return (
+    <>
+      <nav className={`${theme.navi}${dropDown ? " navi_type_dropdown" : ""}`}>
+        {/*Title*/}
+        <Link to="/" className="navi__link" tabIndex={-1}>
+          <p className={theme.title} onClick={onHomeClick} tabIndex={0}>
+            NewsExplorer
+          </p>
+        </Link>
+        {/*Button Container*/}
+        <div
+          className={`navi__container ${dropDown ? "navi__container_type_dropdown" : ""}`}
+        >
+          {/*Home Menu Button*/}
+          <Link to="/" className="navi__link" tabIndex={-1}>
+            <button
+              className={`${theme.button} navi__btn_type_home ${activePath === "/" ? "navi__btn_active" : ""}`}
+              onClick={onDropDownMenuClick}
+            >
+              Home
+            </button>
+          </Link>
+          {currentUser.isLoggedIn ? (
+            <>
+              {/*Saved News Menu Button*/}
+              <Link to={"/saved-news"} className="navi__link" tabIndex={-1}>
+                <button
+                  className={`${theme.button} navi__btn_type_saved-articles ${activePath === "/saved-news" ? "navi__btn_active" : ""}`}
+                  onClick={onDropDownMenuClick}
+                >
+                  Saved articles
+                </button>
+              </Link>
+              {/*Logout Button*/}
+              <Link to={"/"} replace className="navi__link" tabIndex={-1}>
+                <button
+                  className={`${theme.button} navi__btn_type_logout`}
+                  onClick={handleLogout}
+                >
+                  <p className="navi__profile-name">{currentUser.name}</p>
+                  <img
+                    src={
+                      activePath === "/saved-news" && !dropDown
+                        ? logoutBtnDark
+                        : logoutBtn
+                    }
+                    alt="Logout icon"
+                    className="navi__logout-icon"
+                  />
+                </button>
+              </Link>
+            </>
+          ) : (
+            <>
+              {/*Signin Button*/}
+              <button
+                className="navi__btn navi__btn_type_signin"
+                onClick={handleLoginClick}
+              >
+                Sign in
+              </button>
+            </>
+          )}
+        </div>
+        <button
+          className={`${theme.button} navi__btn_type_toggle ${dropDown ? "navi__btn_type_toggle_active" : ""}`}
+          onClick={onDropDownClick}
+        />
+      </nav>
+    </>
+  );
+};

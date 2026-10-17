@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  background: none;
+  max-height: 576px;
+  z-index: 99;
+  box-shadow: 0px -1px 0px 0px #ffffff33 inset;
+}
+.header_white {
+  background-color: #fff;
+  box-shadow: 0px -1px 0px 0px #d1d2d6 inset;
+}
